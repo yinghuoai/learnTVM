@@ -1,1 +1,1 @@
-This repo is for recording my learning notes from TVM
+This repo is for recording my learning notes for TVM
