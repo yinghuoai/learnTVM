@@ -1,0 +1,225 @@
+digraph {
+	rankdir=BT
+	node [shape=box]
+	0 [label="data:
+Tensor[(1, 3, 28, 28), float32]"]
+	1 [label="bn_data_gamma:
+Tensor[(3,), float32]"]
+	2 [label="bn_data_beta:
+Tensor[(3,), float32]"]
+	3 [label="bn_data_moving_mean:
+Tensor[(3,), float32]"]
+	4 [label="bn_data_moving_var:
+Tensor[(3,), float32]"]
+	5 [label="conv0_weight:
+Tensor[(16, 3, 3, 3), float32]"]
+	6 [label="stage1_unit1_bn1_gamma:
+Tensor[(16,), float32]"]
+	7 [label="stage1_unit1_bn1_beta:
+Tensor[(16,), float32]"]
+	8 [label="stage1_unit1_bn1_moving_mean:
+Tensor[(16,), float32]"]
+	9 [label="stage1_unit1_bn1_moving_var:
+Tensor[(16,), float32]"]
+	10 [label="stage1_unit1_conv1_weight:
+Tensor[(16, 16, 3, 3), float32]"]
+	11 [label="stage1_unit1_bn2_gamma:
+Tensor[(16,), float32]"]
+	12 [label="stage1_unit1_bn2_beta:
+Tensor[(16,), float32]"]
+	13 [label="stage1_unit1_bn2_moving_mean:
+Tensor[(16,), float32]"]
+	14 [label="stage1_unit1_bn2_moving_var:
+Tensor[(16,), float32]"]
+	15 [label="stage1_unit1_conv2_weight:
+Tensor[(16, 16, 3, 3), float32]"]
+	16 [label="stage1_unit1_sc_weight:
+Tensor[(16, 16, 1, 1), float32]"]
+	17 [label="stage2_unit1_bn1_gamma:
+Tensor[(16,), float32]"]
+	18 [label="stage2_unit1_bn1_beta:
+Tensor[(16,), float32]"]
+	19 [label="stage2_unit1_bn1_moving_mean:
+Tensor[(16,), float32]"]
+	20 [label="stage2_unit1_bn1_moving_var:
+Tensor[(16,), float32]"]
+	21 [label="stage2_unit1_conv1_weight:
+Tensor[(32, 16, 3, 3), float32]"]
+	22 [label="stage2_unit1_bn2_gamma:
+Tensor[(32,), float32]"]
+	23 [label="stage2_unit1_bn2_beta:
+Tensor[(32,), float32]"]
+	24 [label="stage2_unit1_bn2_moving_mean:
+Tensor[(32,), float32]"]
+	25 [label="stage2_unit1_bn2_moving_var:
+Tensor[(32,), float32]"]
+	26 [label="stage2_unit1_conv2_weight:
+Tensor[(32, 32, 3, 3), float32]"]
+	27 [label="stage2_unit1_sc_weight:
+Tensor[(32, 16, 1, 1), float32]"]
+	28 [label="stage3_unit1_bn1_gamma:
+Tensor[(32,), float32]"]
+	29 [label="stage3_unit1_bn1_beta:
+Tensor[(32,), float32]"]
+	30 [label="stage3_unit1_bn1_moving_mean:
+Tensor[(32,), float32]"]
+	31 [label="stage3_unit1_bn1_moving_var:
+Tensor[(32,), float32]"]
+	32 [label="stage3_unit1_conv1_weight:
+Tensor[(64, 32, 3, 3), float32]"]
+	33 [label="stage3_unit1_bn2_gamma:
+Tensor[(64,), float32]"]
+	34 [label="stage3_unit1_bn2_beta:
+Tensor[(64,), float32]"]
+	35 [label="stage3_unit1_bn2_moving_mean:
+Tensor[(64,), float32]"]
+	36 [label="stage3_unit1_bn2_moving_var:
+Tensor[(64,), float32]"]
+	37 [label="stage3_unit1_conv2_weight:
+Tensor[(64, 64, 3, 3), float32]"]
+	38 [label="stage3_unit1_sc_weight:
+Tensor[(64, 32, 1, 1), float32]"]
+	39 [label="bn1_gamma:
+Tensor[(64,), float32]"]
+	40 [label="bn1_beta:
+Tensor[(64,), float32]"]
+	41 [label="bn1_moving_mean:
+Tensor[(64,), float32]"]
+	42 [label="bn1_moving_var:
+Tensor[(64,), float32]"]
+	43 [label="fc1_weight:
+Tensor[(1000, 64), float32]"]
+	44 [label="fc1_bias:
+Tensor[(1000,), float32]"]
+	54 [label="Call(op=nn.batch_norm)"]
+	0 -> 54
+	1 -> 54
+	2 -> 54
+	3 -> 54
+	4 -> 54
+	55 [label="TupleGetItem(idx=0)"]
+	54 -> 55
+	56 [label="Call(op=nn.conv2d)"]
+	55 -> 56
+	5 -> 56
+	57 [label="Call(op=nn.batch_norm)"]
+	56 -> 57
+	6 -> 57
+	7 -> 57
+	8 -> 57
+	9 -> 57
+	58 [label="TupleGetItem(idx=0)"]
+	57 -> 58
+	59 [label="Call(op=nn.relu)"]
+	58 -> 59
+	60 [label="Call(op=nn.conv2d)"]
+	59 -> 60
+	10 -> 60
+	61 [label="Call(op=nn.batch_norm)"]
+	60 -> 61
+	11 -> 61
+	12 -> 61
+	13 -> 61
+	14 -> 61
+	62 [label="TupleGetItem(idx=0)"]
+	61 -> 62
+	63 [label="Call(op=nn.relu)"]
+	62 -> 63
+	64 [label="Call(op=nn.conv2d)"]
+	63 -> 64
+	15 -> 64
+	65 [label="Call(op=nn.conv2d)"]
+	59 -> 65
+	16 -> 65
+	66 [label="Call(op=add)"]
+	64 -> 66
+	65 -> 66
+	67 [label="Call(op=nn.batch_norm)"]
+	66 -> 67
+	17 -> 67
+	18 -> 67
+	19 -> 67
+	20 -> 67
+	68 [label="TupleGetItem(idx=0)"]
+	67 -> 68
+	69 [label="Call(op=nn.relu)"]
+	68 -> 69
+	70 [label="Call(op=nn.conv2d)"]
+	69 -> 70
+	21 -> 70
+	71 [label="Call(op=nn.batch_norm)"]
+	70 -> 71
+	22 -> 71
+	23 -> 71
+	24 -> 71
+	25 -> 71
+	72 [label="TupleGetItem(idx=0)"]
+	71 -> 72
+	73 [label="Call(op=nn.relu)"]
+	72 -> 73
+	74 [label="Call(op=nn.conv2d)"]
+	73 -> 74
+	26 -> 74
+	75 [label="Call(op=nn.conv2d)"]
+	69 -> 75
+	27 -> 75
+	76 [label="Call(op=add)"]
+	74 -> 76
+	75 -> 76
+	77 [label="Call(op=nn.batch_norm)"]
+	76 -> 77
+	28 -> 77
+	29 -> 77
+	30 -> 77
+	31 -> 77
+	78 [label="TupleGetItem(idx=0)"]
+	77 -> 78
+	79 [label="Call(op=nn.relu)"]
+	78 -> 79
+	80 [label="Call(op=nn.conv2d)"]
+	79 -> 80
+	32 -> 80
+	81 [label="Call(op=nn.batch_norm)"]
+	80 -> 81
+	33 -> 81
+	34 -> 81
+	35 -> 81
+	36 -> 81
+	82 [label="TupleGetItem(idx=0)"]
+	81 -> 82
+	83 [label="Call(op=nn.relu)"]
+	82 -> 83
+	84 [label="Call(op=nn.conv2d)"]
+	83 -> 84
+	37 -> 84
+	85 [label="Call(op=nn.conv2d)"]
+	79 -> 85
+	38 -> 85
+	86 [label="Call(op=add)"]
+	84 -> 86
+	85 -> 86
+	87 [label="Call(op=nn.batch_norm)"]
+	86 -> 87
+	39 -> 87
+	40 -> 87
+	41 -> 87
+	42 -> 87
+	88 [label="TupleGetItem(idx=0)"]
+	87 -> 88
+	89 [label="Call(op=nn.relu)"]
+	88 -> 89
+	90 [label="Call(op=nn.global_avg_pool2d)"]
+	89 -> 90
+	91 [label="Call(op=nn.batch_flatten)"]
+	90 -> 91
+	92 [label="Call(op=nn.dense)"]
+	91 -> 92
+	43 -> 92
+	93 [label="Call(op=nn.bias_add)"]
+	92 -> 93
+	44 -> 93
+	94 [label="Call(op=nn.softmax)"]
+	93 -> 94
+	95 [label=Function]
+	94 -> 95
+}

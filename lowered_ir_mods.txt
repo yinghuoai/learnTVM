@@ -1,0 +1,40 @@
+lowered_ir_mods: {llvm -keys=cpu -link-params=0: IRModule({GlobalVar(tvmgen_default_fused_nn_conv2d_power_divide): PrimFunc([placeholder, placeholder, T_divide]) attrs={"from_legacy_te_schedule": (bool)1, "global_symbol": "tvmgen_default_fused_nn_conv2d_power_divide", "tir.noalias": (bool)1, "target": llvm -keys=cpu -link-params=0} {
+  allocate data_vec[float32 * 9], storage_scope = global
+  allocate kernel_vec[float32 * 1], storage_scope = global
+  allocate conv2d_NCHWc.global[float32 * 9], storage_scope = global
+  parallel (bs.c.fused.h.fused, 0, 3) {
+    for (w, 0, 3) {
+      let cse_var_1 = ((bs.c.fused.h.fused*3) + w)
+      data_vec[cse_var_1] = placeholder[cse_var_1]
+    }
+  }
+  kernel_vec[0] = placeholder[0]
+  conv2d_NCHWc.global[0] = 0f
+  conv2d_NCHWc.global[1] = 0f
+  conv2d_NCHWc.global[2] = 0f
+  conv2d_NCHWc.global[3] = 0f
+  conv2d_NCHWc.global[4] = 0f
+  conv2d_NCHWc.global[5] = 0f
+  conv2d_NCHWc.global[6] = 0f
+  conv2d_NCHWc.global[7] = 0f
+  conv2d_NCHWc.global[8] = 0f
+  conv2d_NCHWc.global[0] = (conv2d_NCHWc.global[0] + (data_vec[0]*kernel_vec[0]))
+  conv2d_NCHWc.global[1] = (conv2d_NCHWc.global[1] + (data_vec[1]*kernel_vec[0]))
+  conv2d_NCHWc.global[2] = (conv2d_NCHWc.global[2] + (data_vec[2]*kernel_vec[0]))
+  conv2d_NCHWc.global[3] = (conv2d_NCHWc.global[3] + (data_vec[3]*kernel_vec[0]))
+  conv2d_NCHWc.global[4] = (conv2d_NCHWc.global[4] + (data_vec[4]*kernel_vec[0]))
+  conv2d_NCHWc.global[5] = (conv2d_NCHWc.global[5] + (data_vec[5]*kernel_vec[0]))
+  conv2d_NCHWc.global[6] = (conv2d_NCHWc.global[6] + (data_vec[6]*kernel_vec[0]))
+  conv2d_NCHWc.global[7] = (conv2d_NCHWc.global[7] + (data_vec[7]*kernel_vec[0]))
+  conv2d_NCHWc.global[8] = (conv2d_NCHWc.global[8] + (data_vec[8]*kernel_vec[0]))
+  for (ax2.inner, 0, 3) {
+    for (ax3.inner, 0, 3) {
+      let cse_var_2 = ((ax2.inner*3) + ax3.inner)
+      T_divide[cse_var_2] = (tir.pow(conv2d_NCHWc.global[cse_var_2], -2f)*0.5f)
+    }
+  }
+}
+, GlobalVar(tvmgen_default_fused_ones): PrimFunc([T_full]) attrs={"from_legacy_te_schedule": (bool)1, "global_symbol": "tvmgen_default_fused_ones", "tir.noalias": (bool)1, "target": llvm -keys=cpu -link-params=0} {
+  T_full[0] = 1f
+}
+})}
